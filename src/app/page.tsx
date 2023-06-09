@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-indent -- disabled */
-/* eslint-disable @typescript-eslint/indent -- disabled */
 "use-client";
+import Link from "next/link";
 import React from "react";
-
-import { Login } from "./login/Login";
 
 /**
  * The landing page for the application
@@ -11,9 +8,11 @@ import { Login } from "./login/Login";
  * @returns - The landing page for the application, using the new app-routing functionality
  */
 const Home = (): JSX.Element => (
-  <main>
-    <Login />
-  </main>
+    <main>
+        <Link href="/login">
+            <button type="button">{"To login"}</button>
+        </Link>
+    </main>
 );
 
 export default Home;
