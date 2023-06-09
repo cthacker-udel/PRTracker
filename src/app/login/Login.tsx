@@ -1,6 +1,12 @@
 "use client";
 import React from "react";
+import { Button } from "react-bootstrap";
 
-export const Login = (): JSX.Element => {
-  return <div>{"Login page"}</div>;
+export const Login = () => {
+  return (
+    <div>
+      {"Login page"}
+      <Button>{"Hello"}</Button>
+    </div>
+  );
 };
