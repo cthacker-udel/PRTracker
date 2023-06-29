@@ -11,6 +11,7 @@ import styles from "./HomePage.module.css";
  */
 export const HomePage = (): JSX.Element => (
     <div className={styles.homepage}>
+        <div className={styles.homepage_body}>{"Home Page"}</div>
         <div className={styles.homepage_button_bar}>
             <Button>{"Log In"}</Button>
             <Button>{"Sign Up"}</Button>
