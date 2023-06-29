@@ -17,11 +17,14 @@ const HomePage = (): JSX.Element => {
         {
             cssQuery: "body",
             style: {
-                background: `url('${background.src}')`,
+                backgroundBlendMode: "screen",
+                backgroundColor: "rgba(128, 128, 128, 0.55)",
+                backgroundImage: `url('${background.src}')`,
                 backgroundSize: "cover",
             },
         },
     ]);
+
     return (
         <div className={styles.homepage}>
             <div className={styles.homepage_body}>{"Home Page"}</div>
