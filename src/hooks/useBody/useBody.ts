@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion -- disabled, boolean call handles that */
 import React from "react";
 
 type useBodyProperties = {
