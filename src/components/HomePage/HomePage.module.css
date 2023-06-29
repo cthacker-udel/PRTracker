@@ -1,4 +1,49 @@
-.homepage_body {
+@keyframes appear_anim {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: 1em;
+    border-radius: 1em;
     font-family: "JetBrains Mono", cursive;
+}
+
+.homepage_body {
+    animation: appear_anim 2.5s ease-in-out forwards;
     font-size: 2.5em;
+    align-self: center;
+}
+
+.homepage_summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 75%;
+    align-self: center;
+    font-size: 1.25em;
+}
+
+.homepage_app_name {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.homepage_button_bar {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.homepage_button_bar > button {
+    width: 50%;
 }

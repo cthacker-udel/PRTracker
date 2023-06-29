@@ -26,6 +26,10 @@ const RootLayout = ({
                 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 rel="stylesheet"
             />
+            <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+                rel="stylesheet"
+            />
         </head>
         <body>
             <Layout>{children}</Layout>

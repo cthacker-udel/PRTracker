@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
+import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 
 import background from "@/assets/background/homepage.gif";
+import { generateTooltip } from "@/helpers/generateTooltip/generateTooltip";
 import { useStyleInjector } from "@/hooks/useStyleInjector/useStyleInjector";
-import { Button } from "@/lib/react-bootstrap";
+import { Button, OverlayTrigger } from "@/lib/react-bootstrap";
 
 import styles from "./HomePage.module.css";
 
@@ -27,10 +29,44 @@ const HomePage = (): JSX.Element => {
 
     return (
         <div className={styles.homepage}>
-            <div className={styles.homepage_body}>{"Home Page"}</div>
+            <div className={styles.homepage_body}>
+                {"Welcome to the "}
+                <span className={styles.homepage_app_name}>{"PR Tracker"}</span>
+                {" app!"}
+            </div>
+            <div className={styles.homepage_summary}>
+                {
+                    "This is an application that helps you track your PR record at the gym, and track where you may need to be improving, and where you may be doing fine."
+                }
+                <div className={styles.homepage_features}>
+                    <ul>
+                        <li>{"Graph to analyze progress"}</li>
+                        <li>
+                            {
+                                "Community of all users aiming to grow both physically and socially"
+                            }
+                        </li>
+                        <li>
+                            {
+                                "Can view past progress, and see how far you've improved over the time working out."
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div className={styles.homepage_button_bar}>
-                <Button>{"Log In"}</Button>
-                <Button>{"Sign Up"}</Button>
+                <OverlayTrigger
+                    delay={{ show: 500, hide: 5000 }}
+                    overlay={(properties: OverlayInjectedProps): JSX.Element =>
+                        generateTooltip(properties, "Log In")
+                    }
+                    placement="bottom"
+                >
+                    <Button variant="outline-success">
+                        <i className="fa-solid fa-dumbbell" />
+                    </Button>
+                </OverlayTrigger>
+                <Button variant="outline-primary">{"Sign Up"}</Button>
             </div>
         </div>
     );

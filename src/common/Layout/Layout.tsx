@@ -12,5 +12,7 @@ type LayoutProperties = React.PropsWithChildren;
  * @returns The layout component, which allows for consistent layout of all elements in the application
  */
 export const Layout = ({ children }: LayoutProperties): JSX.Element => (
-    <div className={styles.layout}>{children}</div>
+    <div className={styles.layout} id="layout">
+        {children}
+    </div>
 );
