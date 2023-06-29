@@ -28,9 +28,7 @@ const RootLayout = ({
             />
         </head>
         <body>
-            <main>
-                <Layout>{children}</Layout>
-            </main>
+            <Layout>{children}</Layout>
         </body>
     </html>
 );
