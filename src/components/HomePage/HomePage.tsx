@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 
@@ -61,9 +62,11 @@ const HomePage = (): JSX.Element => {
                     }
                     placement="bottom"
                 >
-                    <Button variant="outline-success">
-                        <i className="fa-solid fa-dumbbell fa-lg" />
-                    </Button>
+                    <Link href="/login">
+                        <Button variant="outline-success">
+                            <i className="fa-solid fa-dumbbell fa-lg" />
+                        </Button>
+                    </Link>
                 </OverlayTrigger>
                 <OverlayTrigger
                     overlay={(properties: OverlayInjectedProps): JSX.Element =>
@@ -71,9 +74,11 @@ const HomePage = (): JSX.Element => {
                     }
                     placement="bottom"
                 >
-                    <Button variant="outline-primary">
-                        <i className="fa-solid fa-user-plus fa-lg" />
-                    </Button>
+                    <Link href="/signup">
+                        <Button variant="outline-primary">
+                            <i className="fa-solid fa-user-plus fa-lg" />
+                        </Button>
+                    </Link>
                 </OverlayTrigger>
             </div>
         </div>

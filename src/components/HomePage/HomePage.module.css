@@ -45,8 +45,12 @@
     gap: 1em;
 }
 
-.homepage_button_bar > button {
+.homepage_button_bar > a {
     width: 50%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+}
+
+.homepage_button_bar > a > button {
+    width: 100%;
 }
