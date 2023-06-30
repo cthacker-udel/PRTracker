@@ -56,17 +56,25 @@ const HomePage = (): JSX.Element => {
             </div>
             <div className={styles.homepage_button_bar}>
                 <OverlayTrigger
-                    delay={{ show: 500, hide: 5000 }}
                     overlay={(properties: OverlayInjectedProps): JSX.Element =>
                         generateTooltip(properties, "Log In")
                     }
                     placement="bottom"
                 >
                     <Button variant="outline-success">
-                        <i className="fa-solid fa-dumbbell" />
+                        <i className="fa-solid fa-dumbbell fa-lg" />
                     </Button>
                 </OverlayTrigger>
-                <Button variant="outline-primary">{"Sign Up"}</Button>
+                <OverlayTrigger
+                    overlay={(properties: OverlayInjectedProps): JSX.Element =>
+                        generateTooltip(properties, "Sign Up")
+                    }
+                    placement="bottom"
+                >
+                    <Button variant="outline-primary">
+                        <i className="fa-solid fa-user-plus fa-lg" />
+                    </Button>
+                </OverlayTrigger>
             </div>
         </div>
     );

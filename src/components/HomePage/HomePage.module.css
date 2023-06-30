@@ -14,7 +14,7 @@
     background-color: rgba(128, 128, 128, 0.5);
     padding: 1em;
     border-radius: 1em;
-    font-family: "JetBrains Mono", cursive;
+    font-family: var(--font-jetbrains-mono);
 }
 
 .homepage_body {
@@ -41,9 +41,12 @@
 .homepage_button_bar {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 1em;
 }
 
 .homepage_button_bar > button {
     width: 50%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
