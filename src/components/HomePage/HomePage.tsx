@@ -64,7 +64,7 @@ const HomePage = (): JSX.Element => {
                 >
                     <Link href="/login">
                         <Button variant="outline-success">
-                            <i className="fa-solid fa-dumbbell fa-lg" />
+                            <i className="fa-solid fa-dumbbell" />
                         </Button>
                     </Link>
                 </OverlayTrigger>
@@ -76,7 +76,7 @@ const HomePage = (): JSX.Element => {
                 >
                     <Link href="/signup">
                         <Button variant="outline-primary">
-                            <i className="fa-solid fa-user-plus fa-lg" />
+                            <i className="fa-solid fa-user-plus" />
                         </Button>
                     </Link>
                 </OverlayTrigger>

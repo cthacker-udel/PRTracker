@@ -15,11 +15,15 @@
     padding: 1em;
     border-radius: 1em;
     font-family: var(--font-jetbrains-mono);
+    width: 75vw;
+    height: fit-content;
+    max-height: 75vh;
+    overflow-y: scroll;
 }
 
 .homepage_body {
     animation: appear_anim 2.5s ease-in-out forwards;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     align-self: center;
 }
 
@@ -53,4 +57,23 @@
 
 .homepage_button_bar > a > button {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .homepage_body {
+        font-size: 1.5rem;
+    }
+
+    .homepage_summary {
+        font-size: .75em;
+        height: fit-content;
+    }
+
+    .homepage_button_bar {
+        height: 10%;
+    }
+
+    .homepage_button_bar > a > button {
+        height: fit-content;
+    }
 }
