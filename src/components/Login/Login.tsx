@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import background from "@/assets/background/login.gif";
 import { commonStyles } from "@/common/commonStyles";
@@ -14,6 +16,16 @@ import {
 } from "@/lib/react-bootstrap";
 
 import styles from "./Login.module.css";
+
+type FormValues = {
+    password: string;
+    username: string;
+};
+
+const FORM_DEFAULT_VALUES: FormValues = {
+    password: "",
+    username: "",
+};
 
 /**
  *
@@ -30,11 +42,54 @@ const Login = (): JSX.Element => {
         },
     ]);
 
+    const { formState, getValues, register } = useForm<FormValues>({
+        criteriaMode: "all",
+        defaultValues: FORM_DEFAULT_VALUES,
+        delayError: 100,
+        mode: "all",
+        reValidateMode: "onChange",
+    });
+
     const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
     const toggleShowPassword = React.useCallback(() => {
         setShowPassword((oldValue: boolean) => !oldValue);
     }, []);
+
+    const { dirtyFields, errors } = formState;
+
+    const login = React.useCallback(async () => {
+        const { password, username } = getValues();
+        const { password: passwordIsDirty, username: usernameIsDirty } =
+            dirtyFields;
+
+        if (
+            Object.keys(errors).length === 0 &&
+            passwordIsDirty &&
+            usernameIsDirty
+        ) {
+            const loginToast = toast.loading("Logging in");
+            const loginResponse: { data: boolean } = await new Promise(
+                (response, _reject) => {
+                    response({ data: false });
+                },
+            );
+            const { data } = loginResponse;
+            if (data) {
+                toast.update(loginToast, {
+                    autoClose: 1000,
+                    isLoading: false,
+                    render: "Successfully logged in!",
+                });
+            } else {
+                toast.update(loginToast, {
+                    autoClose: 1000,
+                    isLoading: false,
+                    render: "Failed to login",
+                });
+            }
+        }
+    }, [dirtyFields, errors, getValues]);
 
     return (
         <div className={styles.login_content}>
@@ -53,6 +108,7 @@ const Login = (): JSX.Element => {
                             <Form.Control
                                 className={styles.login_form}
                                 type="text"
+                                {...register("username")}
                             />
                         </OverlayTrigger>
                         <InputGroup.Text className={styles.login_form_addendum}>
@@ -74,6 +130,7 @@ const Login = (): JSX.Element => {
                             <Form.Control
                                 className={styles.login_form}
                                 type={showPassword ? "text" : "password"}
+                                {...register("password")}
                             />
                         </OverlayTrigger>
                         <InputGroup.Text className={styles.login_form_addendum}>

@@ -2,6 +2,7 @@
 /* eslint-disable new-cap -- disabled */
 import { DynaPuff, JetBrains_Mono } from "next/font/google";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 import { Layout } from "@/common";
 
@@ -46,6 +47,13 @@ const RootLayout = ({
         </head>
         <body>
             <Layout>{children}</Layout>
+            <ToastContainer
+                autoClose={5000}
+                closeOnClick
+                newestOnTop
+                pauseOnHover
+                position="top-right"
+            />
         </body>
     </html>
 );
