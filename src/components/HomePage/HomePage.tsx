@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
+import { Key } from "ts-key-enum";
 
 import background from "@/assets/background/homepage.gif";
 import { generateTooltip } from "@/helpers/generateTooltip/generateTooltip";
@@ -27,6 +29,28 @@ const HomePage = (): JSX.Element => {
             },
         },
     ]);
+
+    const router = useRouter();
+
+    const keyboardShortcuts = React.useCallback(
+        (event: KeyboardEvent) => {
+            const { ctrlKey, key } = event;
+            if (ctrlKey && key === Key.ArrowLeft) {
+                router.push("/login");
+            }
+        },
+        [router],
+    );
+
+    React.useEffect(() => {
+        if (document !== undefined) {
+            document.addEventListener("keydown", keyboardShortcuts);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", keyboardShortcuts);
+        };
+    }, [keyboardShortcuts]);
 
     return (
         <div className={styles.homepage}>

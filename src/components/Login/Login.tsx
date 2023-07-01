@@ -113,6 +113,10 @@ const Login = (): JSX.Element => {
         if (document !== undefined) {
             document.addEventListener("keydown", keyboardShortcuts);
         }
+
+        return () => {
+            document.removeEventListener("keydown", keyboardShortcuts);
+        };
     }, [keyboardShortcuts]);
 
     return (
