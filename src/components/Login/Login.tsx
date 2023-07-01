@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises -- disabled */
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { Key } from "ts-key-enum";
 
 import background from "@/assets/background/login.gif";
 import { commonStyles } from "@/common/commonStyles";
@@ -50,13 +53,15 @@ const Login = (): JSX.Element => {
         reValidateMode: "onChange",
     });
 
+    const router = useRouter();
+
+    const { dirtyFields, errors } = formState;
+
     const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
     const toggleShowPassword = React.useCallback(() => {
         setShowPassword((oldValue: boolean) => !oldValue);
     }, []);
-
-    const { dirtyFields, errors } = formState;
 
     const login = React.useCallback(async () => {
         const { password, username } = getValues();
@@ -90,6 +95,25 @@ const Login = (): JSX.Element => {
             }
         }
     }, [dirtyFields, errors, getValues]);
+
+    const keyboardShortcuts = React.useCallback(
+        async (event: KeyboardEvent) => {
+            const { ctrlKey, key } = event;
+            const { password, username } = dirtyFields;
+            if (key === Key.Enter && password && username) {
+                await login();
+            } else if (key === Key.ArrowRight && ctrlKey) {
+                router.push("/");
+            }
+        },
+        [dirtyFields, login, router],
+    );
+
+    React.useEffect(() => {
+        if (document !== undefined) {
+            document.addEventListener("keydown", keyboardShortcuts);
+        }
+    }, [keyboardShortcuts]);
 
     return (
         <div className={styles.login_content}>
@@ -168,6 +192,7 @@ const Login = (): JSX.Element => {
                         generateTooltip(properties, "Login")
                     }
                     placement="left"
+                    trigger={["focus", "hover"]}
                 >
                     <Button variant="outline-success">
                         <i className="fa-solid fa-right-to-bracket" />
@@ -178,6 +203,7 @@ const Login = (): JSX.Element => {
                         generateTooltip(properties, "Return to Home")
                     }
                     placement="right"
+                    trigger={["focus", "hover"]}
                 >
                     <Button variant="outline-primary">
                         <i className="fa-solid fa-house" />
